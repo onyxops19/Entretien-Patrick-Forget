@@ -104,12 +104,12 @@ body {
   position: absolute; inset: 0;
   background-image: url('images/hero-bg.png');
   background-size: cover; background-position: center 40%;
-  transform: scale(1.08);
-  animation: heroZoom 14s ease-in-out infinite alternate;
+  transform: scale(1.0);
+  animation: heroZoom 18s ease-out forwards;
 }
 @keyframes heroZoom {
-  from { transform: scale(1.08); }
-  to   { transform: scale(1.14); }
+  from { transform: scale(1.0); }
+  to   { transform: scale(1.12); }
 }
 .hero-overlay {
   position: absolute; inset: 0;
@@ -476,7 +476,7 @@ body {
 }
 .dark-cta-right-img {
   position: absolute; inset: 0;
-  background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900&q=80');
+  background-image: url('images/echangeur-plafond.png');
   background-size: cover; background-position: center;
   filter: brightness(0.6) saturate(0.7);
   transition: transform 0.8s ease;
