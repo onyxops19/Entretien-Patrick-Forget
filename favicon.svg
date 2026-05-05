@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#111111"/>
+  <path d="M100 28 L172 98" stroke="#7A7A7A" stroke-width="11" stroke-linecap="round"/>
+  <path d="M100 28 L28 98" stroke="#7A7A7A" stroke-width="11" stroke-linecap="round"/>
+  <path d="M28 98 L28 178 L148 178 L148 132" stroke="#7A7A7A" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="46" y="162" font-family="Arial Black,sans-serif" font-weight="900" font-size="44" fill="white">EPF</text>
+</svg>

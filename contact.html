@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact & Soumission — Entretien Patrick Forget</title>
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: images/; connect-src 'self' https://formspree.io; frame-src https://www.google.com; object-src 'none'; base-uri 'self';">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<script src="https://www.google.com/recaptcha/api.js?render=VOTRE_CLE_RECAPTCHA_V3" async defer></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg-warm: #F4F1EC;
+  --dark:    #111111;
+  --accent:  #8A8A8A;
+  --border:  #D6D3CC;
+}
+body { font-family: 'Montserrat', sans-serif; background: #1a1a1a; }
+
+
+
+/* ── NAVBAR (simplified) ── */
+.navbar {
+  background: rgba(17,17,17,0.92);
+  backdrop-filter: blur(12px);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 60px;
+}
+.nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.nav-logo svg { width: 34px; height: 34px; }
+.nav-logo-text { font-size: 10px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: white; line-height: 1.3; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.7); text-decoration: none; }
+.nav-cta { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: white; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); padding: 10px 22px; }
+
+/* ── HERO CONTACT SECTION ── */
+.contact-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.contact-bg {
+  position: absolute; inset: 0;
+  background-image: url('images/echangeur-plafond.png');
+  background-size: cover; background-position: center;
+}
+.contact-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8,8,8,0.80) 0%,
+    rgba(8,8,8,0.72) 60%,
+    rgba(8,8,8,0.85) 100%
+  );
+}
+/* thin vertical accent line */
+.contact-line {
+  position: absolute; left: 60px; top: 0; bottom: 0;
+  width: 1px; background: rgba(255,255,255,0.06);
+}
+.contact-content {
+  position: relative; z-index: 2;
+  width: 100%;
+  max-width: 680px;
+  padding: 120px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Eyebrow */
+.contact-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.45em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 14px;
+}
+.contact-eyebrow::before { content: ''; width: 32px; height: 1px; background: rgba(255,255,255,0.25); }
+.contact-eyebrow::after  { content: ''; width: 32px; height: 1px; background: rgba(255,255,255,0.25); }
+
+/* Title */
+.contact-title {
+  font-size: 42px; font-weight: 800;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: white; line-height: 1.05;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.contact-subtitle {
+  font-size: 12px; font-weight: 300;
+  color: rgba(255,255,255,0.5); letter-spacing: 0.05em;
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+/* ── FORM CARD ── */
+.form-card {
+  background: var(--bg-warm);
+  width: 100%;
+  padding: 44px 48px;
+}
+.form-card-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.35em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
+}
+.form-card-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+  margin-bottom: 24px;
+}
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field.full { grid-column: 1 / -1; }
+
+.form-field label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: #6F6F6F;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  background: transparent;
+  border: none; border-bottom: 1px solid var(--border);
+  padding: 10px 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px; font-weight: 400; color: #1A1A1A;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+}
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus { border-bottom-color: #111; }
+.form-field textarea { resize: none; height: 72px; }
+.form-field select { appearance: none; cursor: pointer; }
+
+.btn-submit {
+  background: var(--dark); color: white;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border: 1px solid var(--dark); padding: 16px 40px;
+  cursor: pointer; transition: background 0.2s;
+  width: 100%;
+}
+.btn-submit:hover { background: #2a2a2a; }
+
+/* ── COORDONNÉES STRIP ── */
+.coords-strip {
+  background: var(--dark);
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr 1px 1fr;
+  padding: 0 60px;
+}
+.coords-divider { background: rgba(255,255,255,0.1); }
+.coords-block {
+  padding: 36px 40px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.coords-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.35em;
+  text-transform: uppercase; color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
+}
+.coords-value {
+  font-size: 14px; font-weight: 500; color: white; letter-spacing: 0.02em;
+}
+.coords-value a { color: white; text-decoration: none; }
+.coords-hours {
+  font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.55);
+  line-height: 1.8;
+}
+
+/* ── FOOTER ── */
+.footer {
+  background: #0a0a0a;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 60px; flex-wrap: wrap; gap: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-brand { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 11px; color: rgba(255,255,255,0.4); text-decoration: none; letter-spacing: 0.05em; }
+.footer-links a:hover { color: rgba(255,255,255,0.7); }
+.footer-copy  { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.3); }
+
+/* ── FORM FIELDS — required marker, errors, states ── */
+.form-field label .req { color: #c0392b; margin-left: 2px; }
+.form-field label .opt { font-size: 10px; font-weight: 400; color: #aaa; margin-left: 4px; }
+.field-error { display: block; font-size: 10px; font-weight: 600; color: #c0392b; letter-spacing: 0.05em; margin-top: 5px; min-height: 14px; }
+.form-field input[aria-invalid="true"],
+.form-field select[aria-invalid="true"],
+.form-field textarea[aria-invalid="true"] { border-bottom-color: #c0392b; }
+.field-meta { display: flex; justify-content: space-between; align-items: flex-start; margin-top: 4px; }
+.char-count { font-size: 10px; color: #aaa; white-space: nowrap; }
+.form-status { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; margin-top: 16px; display: none; }
+.form-status.success { color: #27ae60; }
+.form-status.error   { color: #c0392b; }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* ── HONEYPOT: visually hidden from real users ── */
+.hp-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* ── COOKIE BANNER ── */
+#cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 8000;
+  background: #1a1a1a; border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 20px 60px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  transform: translateY(100%); transition: transform 0.4s ease;
+}
+#cookie-banner.visible { transform: translateY(0); }
+.cookie-text { font-size: 12px; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.6; flex: 1; }
+.cookie-text a { color: rgba(255,255,255,0.85); }
+.cookie-btn { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 12px 24px; cursor: pointer; border: none; }
+.cookie-btn.accept { background: white; color: #111; }
+.cookie-btn.decline { background: transparent; color: rgba(255,255,255,0.5); border: 1px solid rgba(255,255,255,0.2); }
+@media (max-width: 768px) { #cookie-banner { padding: 20px 24px; } }
+
+/* ── MOBILE STICKY ── */
+.mobile-sticky { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: var(--dark); padding: 16px 24px; z-index: 300; }
+.mobile-sticky a { display: block; text-align: center; color: white; font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; text-decoration: none; }
+@media (max-width: 768px) {
+  .mobile-sticky { display: block; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar" aria-label="Navigation principale">
+  <a href="index.html" class="nav-logo" aria-label="Entretien Patrick Forget — Accueil">
+    <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M100 28 L172 98" stroke="#7A7A7A" stroke-width="11" stroke-linecap="round"/>
+      <path d="M100 28 L28 98" stroke="#7A7A7A" stroke-width="11" stroke-linecap="round"/>
+      <path d="M28 98 L28 178 L148 178 L148 132" stroke="#7A7A7A" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="46" y="162" font-family="Arial Black,sans-serif" font-weight="900" font-size="44" fill="white">EPF</text>
+    </svg>
+    <div class="nav-logo-text">Entretien<br>Patrick Forget</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="realisations.html">Réalisations</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="tel:8199678926" class="nav-cta" aria-label="Appeler au (819) 967-8926">(819) 967-8926</a>
+</nav>
+
+<!-- HERO CONTACT -->
+<section class="contact-hero">
+  <div class="contact-bg"></div>
+  <div class="contact-overlay"></div>
+  <div class="contact-line"></div>
+
+  <div class="contact-content">
+    <div class="contact-eyebrow">Nous joindre</div>
+    <h1 class="contact-title">Demande de<br>soumission</h1>
+    <p class="contact-subtitle">Remplissez le formulaire — nous vous répondons sous 24h</p>
+
+    <div class="form-card">
+      <div class="form-card-label">Vos informations</div>
+      <form id="contact-form" novalidate aria-label="Formulaire de demande de soumission">
+
+        <!-- Honeypot: invisible to real users, bots fill it -->
+        <div class="hp-trap" aria-hidden="true">
+          <label for="f-website">Site web</label>
+          <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="f-nom">Nom complet <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="f-nom" name="nom" placeholder="Jean Tremblay"
+              maxlength="80" autocomplete="name" required aria-required="true"
+              aria-describedby="err-nom">
+            <span class="field-error" id="err-nom" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="f-tel">Téléphone <span class="req" aria-hidden="true">*</span></label>
+            <input type="tel" id="f-tel" name="tel" placeholder="(819) 000-0000"
+              maxlength="20" autocomplete="tel" required aria-required="true"
+              aria-describedby="err-tel">
+            <span class="field-error" id="err-tel" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="f-email">Courriel <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="f-email" name="email" placeholder="votre@courriel.com"
+              maxlength="120" autocomplete="email" required aria-required="true"
+              aria-describedby="err-email">
+            <span class="field-error" id="err-email" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-field">
+            <label for="f-service">Service demandé <span class="req" aria-hidden="true">*</span></label>
+            <select id="f-service" name="service" required aria-required="true"
+              aria-describedby="err-service">
+              <option value="" disabled selected>Choisir un service</option>
+              <option value="Thermopompe">Thermopompe</option>
+              <option value="Conduit de sécheuse">Conduit de sécheuse</option>
+              <option value="Échangeur d'air">Échangeur d'air</option>
+              <option value="Système central">Système central</option>
+            </select>
+            <span class="field-error" id="err-service" role="alert" aria-live="polite"></span>
+          </div>
+          <div class="form-field full">
+            <label for="f-message">Message <span class="opt">(optionnel)</span></label>
+            <textarea id="f-message" name="message"
+              placeholder="Décrivez votre besoin en quelques mots..."
+              maxlength="1000" aria-describedby="err-message msg-count"></textarea>
+            <div class="field-meta">
+              <span class="field-error" id="err-message" role="alert" aria-live="polite"></span>
+              <span class="char-count" id="msg-count" aria-live="polite">0 / 1000</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-submit" class="btn-submit"
+          aria-label="Envoyer la demande de soumission">
+          <span id="btn-text">Envoyer la demande</span>
+          <span id="btn-loading" style="display:none" aria-live="polite">Envoi en cours…</span>
+        </button>
+
+        <p class="form-status success" id="form-success" role="alert" aria-live="assertive">
+          ✓ Votre demande a bien été envoyée. Nous vous répondrons sous 24h.
+        </p>
+        <p class="form-status error" id="form-rate-limit" role="alert">
+          Trop de tentatives. Veuillez réessayer dans quelques minutes.
+        </p>
+        <p class="form-status error" id="form-error" role="alert">
+          Une erreur est survenue. Veuillez réessayer ou nous appeler directement.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- COORDONNÉES STRIP -->
+<div class="coords-strip">
+  <div class="coords-block">
+    <div class="coords-label">Téléphone</div>
+    <div class="coords-value"><a href="tel:8199678926">(819) 967-8926</a></div>
+  </div>
+  <div class="coords-divider"></div>
+  <div class="coords-block">
+    <div class="coords-label">Courriel</div>
+    <div class="coords-value"><a href="mailto:patrickforget94@hotmail.com">patrickforget94@hotmail.com</a></div>
+  </div>
+  <div class="coords-divider"></div>
+  <div class="coords-block">
+    <div class="coords-label">Heures d'ouverture</div>
+    <div class="coords-hours">
+      Lundi – Dimanche<br>
+      07:00 – 22:00
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" aria-label="Pied de page">
+  <span class="footer-brand">EPF — Entretien Patrick Forget</span>
+  <nav class="footer-links" aria-label="Liens légaux">
+    <a href="privacy.html">Politique de confidentialité</a>
+    <a href="terms.html">Conditions d'utilisation</a>
+  </nav>
+  <span class="footer-copy">© 2026 Entretien Patrick Forget. Tous droits réservés.</span>
+</footer>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" role="dialog" aria-label="Préférences de cookies" aria-modal="false">
+  <p class="cookie-text">
+    Nous utilisons uniquement des cookies fonctionnels essentiels. Consultez notre
+    <a href="privacy.html">politique de confidentialité</a>.
+  </p>
+  <button id="cookie-accept" class="cookie-btn accept">Accepter</button>
+  <button id="cookie-decline" class="cookie-btn decline">Refuser</button>
+</div>
+
+<div class="mobile-sticky">
+  <a href="tel:8199678926">Appeler maintenant — (819) 967-8926</a>
+</div>
+
+<script>
+// ── NAVBAR SCROLL ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 80);
+}, { passive: true });
+
+// ── COOKIE CONSENT ──
+(function() {
+  const KEY = 'epf_cookie_pref';
+  const banner = document.getElementById('cookie-banner');
+  if (!banner) return;
+  if (!localStorage.getItem(KEY)) setTimeout(() => banner.classList.add('visible'), 900);
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem(KEY, 'accepted'); banner.classList.remove('visible');
+  });
+  document.getElementById('cookie-decline').addEventListener('click', () => {
+    localStorage.setItem(KEY, 'declined'); banner.classList.remove('visible');
+  });
+})();
+
+// ── FORM SECURITY ──
+(function() {
+  'use strict';
+
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  // Sanitize: strip HTML tags and dangerous patterns
+  function sanitize(str) {
+    return String(str)
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/javascript:/gi, '')
+      .replace(/on\w+\s*=/gi, '')
+      .trim();
+  }
+
+  // Rate limiting: max 3 submissions per 5 minutes
+  function checkRateLimit() {
+    const KEY = 'epf_form_times';
+    const WINDOW = 5 * 60 * 1000;
+    const MAX = 3;
+    let times = JSON.parse(localStorage.getItem(KEY) || '[]');
+    const now = Date.now();
+    times = times.filter(t => now - t < WINDOW);
+    if (times.length >= MAX) return false;
+    times.push(now);
+    localStorage.setItem(KEY, JSON.stringify(times));
+    return true;
+  }
+
+  // Per-field validation rules
+  function validateField(id, value) {
+    const v = value.trim();
+    if (id === 'f-nom') {
+      if (!v) return 'Le nom est requis.';
+      if (v.length > 80) return 'Maximum 80 caractères.';
+    }
+    if (id === 'f-tel') {
+      if (!v) return 'Le numéro de téléphone est requis.';
+      if (!/^[\d\s\-\(\)\+\.]{7,20}$/.test(v)) return 'Format invalide (ex: 819 967-8926).';
+    }
+    if (id === 'f-email') {
+      if (!v) return "L'adresse courriel est requise.";
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return 'Adresse courriel invalide.';
+    }
+    if (id === 'f-service') {
+      if (!v) return 'Veuillez choisir un service.';
+    }
+    if (id === 'f-message') {
+      if (value.length > 1000) return 'Maximum 1000 caractères.';
+    }
+    return '';
+  }
+
+  function showError(fieldId, msg) {
+    const errId = 'err-' + fieldId.replace('f-', '');
+    const errEl = document.getElementById(errId);
+    const input = document.getElementById(fieldId);
+    if (errEl) errEl.textContent = msg;
+    if (input) {
+      if (msg) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+    }
+  }
+
+  function hideStatus() {
+    ['form-success','form-rate-limit','form-error'].forEach(id => {
+      document.getElementById(id).style.display = 'none';
+    });
+  }
+
+  // Live blur + re-validation on input after first error
+  ['f-nom','f-tel','f-email','f-service','f-message'].forEach(id => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('blur', () => showError(id, validateField(id, el.value)));
+    el.addEventListener('input', () => {
+      if (el.getAttribute('aria-invalid') === 'true')
+        showError(id, validateField(id, el.value));
+    });
+  });
+
+  // Character counter for message
+  const msgEl = document.getElementById('f-message');
+  const cntEl = document.getElementById('msg-count');
+  if (msgEl && cntEl) {
+    msgEl.addEventListener('input', () => {
+      cntEl.textContent = msgEl.value.length + ' / 1000';
+    });
+  }
+
+  // Form submit
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    hideStatus();
+
+    // Honeypot check — silently reject bots
+    if (document.getElementById('f-website').value) return;
+
+    // Rate limit check
+    if (!checkRateLimit()) {
+      document.getElementById('form-rate-limit').style.display = 'block';
+      return;
+    }
+
+    // Validate all fields
+    const fields = ['f-nom','f-tel','f-email','f-service','f-message'];
+    let hasErrors = false;
+    fields.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const err = validateField(id, el.value);
+      showError(id, err);
+      if (err) hasErrors = true;
+    });
+    if (hasErrors) {
+      // Focus first invalid field for accessibility
+      const first = form.querySelector('[aria-invalid="true"]');
+      if (first) first.focus();
+      return;
+    }
+
+    // Disable submit button
+    const btn = document.getElementById('btn-submit');
+    document.getElementById('btn-text').style.display = 'none';
+    document.getElementById('btn-loading').style.display = 'inline';
+    btn.disabled = true;
+
+    // Get reCAPTCHA v3 token (replace key when deploying)
+    let recaptchaToken = '';
+    if (typeof grecaptcha !== 'undefined') {
+      try {
+        recaptchaToken = await grecaptcha.execute('VOTRE_CLE_RECAPTCHA_V3', { action: 'submit' });
+      } catch(_) {}
+    }
+
+    // Build sanitized payload
+    const payload = {
+      nom:     sanitize(document.getElementById('f-nom').value),
+      tel:     sanitize(document.getElementById('f-tel').value),
+      email:   sanitize(document.getElementById('f-email').value),
+      service: sanitize(document.getElementById('f-service').value),
+      message: sanitize(document.getElementById('f-message').value),
+      'g-recaptcha-response': recaptchaToken,
+    };
+
+    // Submit via Formspree (replace VOTRE_ID_FORMSPREE with your form ID from formspree.io)
+    try {
+      const resp = await fetch('https://formspree.io/f/VOTRE_ID_FORMSPREE', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (resp.ok) {
+        form.reset();
+        if (cntEl) cntEl.textContent = '0 / 1000';
+        document.getElementById('form-success').style.display = 'block';
+      } else throw new Error();
+    } catch(_) {
+      document.getElementById('form-error').style.display = 'block';
+      btn.disabled = false;
+      document.getElementById('btn-text').style.display = 'inline';
+      document.getElementById('btn-loading').style.display = 'none';
+    }
+  });
+})();
+</script>
+</body>
+</html>
